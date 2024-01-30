@@ -4,9 +4,12 @@
 
 package frc.robot.subsystems;
 
+import java.util.Map;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -27,6 +30,15 @@ public class LimelightSubsystem extends SubsystemBase {
     m_tab.addNumber("Tag tx", this::getTx);
     m_tab.addNumber("Tag ty", this::getTy);
     m_tab.addNumber("Tag ta", this::getTa);
+
+    m_tab.addNumber("CameraPose X", this::getCameraPoseX);
+    m_tab.addNumber("CameraPose Y", this::getCameraPoseY);
+    m_tab.addNumber("CameraPose Z", this::getCameraPoseZ);
+    
+    m_tab.addNumber("CameraPose Roll", this::getCameraPoseRoll);
+    m_tab.addNumber("CameraPose Pitch", this::getCameraPosePitch);
+    m_tab.addNumber("CameraPose Yaw", this::getCameraPoseYaw);
+    
   
   }
 
@@ -56,6 +68,43 @@ public class LimelightSubsystem extends SubsystemBase {
     double ta = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0.0);
     return ta;
   }
+
+  public double[] getCameraPose(){
+    double[] camera3DPose = new double[6];
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("camerapose_targetspace").getDoubleArray(camera3DPose);
+    return camera3DPose;  
+    //I beleive Translation (X,Y,Z) Rotation(Roll,Pitch,Yaw)
+}
+
+public double getCameraPoseX(){
+    double[] camera3DPose = getCameraPose();
+    return camera3DPose[0];
+}
+
+public double getCameraPoseY(){
+    double[] camera3DPose = getCameraPose();
+    return camera3DPose[1];
+}
+
+public double getCameraPoseZ(){
+    double[] camera3DPose = getCameraPose();
+    return camera3DPose[2];
+}
+
+public double getCameraPoseRoll(){
+    double[] camera3DPose = getCameraPose();
+    return camera3DPose[3];
+}
+
+public double getCameraPosePitch(){
+    double[] camera3DPose = getCameraPose();
+    return camera3DPose[4];
+}
+
+public double getCameraPoseYaw(){
+    double[] camera3DPose = getCameraPose();
+    return camera3DPose[5];
+}
   
 
   @Override
