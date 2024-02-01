@@ -6,17 +6,23 @@ package frc.robot.subsystems;
 
 import java.util.Map;
 
+import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import frc.robot.Constants.LimelightConstants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LimelightSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   private final ShuffleboardTab m_tab = Shuffleboard.getTab("Limelight");
+  GenericEntry customTagHeight;
+  GenericEntry customCamHeight;
+  GenericEntry customCamAngle;
   
   public LimelightSubsystem() {
 
@@ -39,7 +45,16 @@ public class LimelightSubsystem extends SubsystemBase {
     m_tab.addNumber("CameraPose Pitch", this::getCameraPosePitch);
     m_tab.addNumber("CameraPose Yaw", this::getCameraPoseYaw);
     
-  
+    //Gets input from shuffleboard for the height an april tag for testing purposes
+    customTagHeight = m_tab.add("Custom April Tag Height", 0).getEntry();
+
+    //Gets input from shuffleboard for the height of the camera for testing purposes
+    customCamHeight = m_tab.add("Custom Limelight Height", 0).getEntry();
+
+    //Gets input from shuffleboard for the angle of the camera for testing purposes
+    customCamAngle = m_tab.add("Custom Limelight Angle", 0).getEntry();
+
+    m_tab.addNumber("April Tag Distance", this::getDistance);
   }
 
   @Override
@@ -104,6 +119,29 @@ public double getCameraPosePitch(){
 public double getCameraPoseYaw(){
     double[] camera3DPose = getCameraPose();
     return camera3DPose[5];
+}
+
+public double getTagHeight(){ //returns height of the viewed april tag in inches based off of their expected game field height
+  double customHeight = customTagHeight.getDouble(0);
+  if (customHeight != 0) return customHeight;
+  double id = getAprilTagID();
+
+  if (id == 1 || id == 2 || id == 5 || id == 6 || id == 9 || id == 10){
+    return 53.38; //height of source and amp april tags
+  }
+  if (id == 3 || id == 4 || id == 7 || id == 8){
+    return 57.13;
+  }
+  else {
+    return 52.00; //remaining tags are for stage april tags
+  }
+}
+
+public double getDistance(){
+  double camHeight = customCamHeight.getDouble(0) == 0 ? LimelightConstants.kCamHeight : customCamHeight.getDouble(0);
+  double camAngle = customCamAngle.getDouble(0) == 0 ? LimelightConstants.kCamAngle : customCamAngle.getDouble(0);
+  double d = (getTagHeight() - camHeight) / Math.tan(Math.toRadians(getTy()+camAngle));
+  return d;
 }
   
 
