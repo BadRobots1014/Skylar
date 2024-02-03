@@ -25,6 +25,11 @@ public class ShooterSubsystem extends SubsystemBase {
     m_back.setInverted(false);
 
     m_back.follow(m_front);
+  }
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
 
   }
 

@@ -91,34 +91,53 @@ public class LimelightSubsystem extends SubsystemBase {
     //I beleive Translation (X,Y,Z) Rotation(Roll,Pitch,Yaw)
 }
 
-public double getCameraPoseX(){
+public double getCameraPoseX(){//Axis side to side on limelight
     double[] camera3DPose = getCameraPose();
-    return camera3DPose[0];
+    //return camera3DPose[0];
+    return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camerapose_targetspace").getDoubleArray(camera3DPose)[0];
+
 }
 
-public double getCameraPoseY(){
+public double getCameraPoseY(){//Axis up and down on limelight
     double[] camera3DPose = getCameraPose();
-    return camera3DPose[1];
+    return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camerapose_targetspace").getDoubleArray(camera3DPose)[1];
 }
 
-public double getCameraPoseZ(){
+public double getCameraPoseZ(){//Axis comming out perpendicular to front of limelight
     double[] camera3DPose = getCameraPose();
-    return camera3DPose[2];
-}
+    return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camerapose_targetspace").getDoubleArray(camera3DPose)[2];}
 
 public double getCameraPoseRoll(){
     double[] camera3DPose = getCameraPose();
-    return camera3DPose[3];
+    return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camerapose_targetspace").getDoubleArray(camera3DPose)[3];
 }
 
 public double getCameraPosePitch(){
     double[] camera3DPose = getCameraPose();
-    return camera3DPose[4];
+    return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camerapose_targetspace").getDoubleArray(camera3DPose)[4];
 }
 
 public double getCameraPoseYaw(){
     double[] camera3DPose = getCameraPose();
-    return camera3DPose[5];
+    return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camerapose_targetspace").getDoubleArray(camera3DPose)[5];
+}
+
+public double getAutoAimShooterAngle(){
+    double posX = getCameraPoseX();
+    double posY = getCameraPoseY(); // height 
+    double posZ = getCameraPoseZ(); // distance from robot
+    double theta = Math.atan((posY/posZ));
+    return theta;
+}
+
+public double getAutoAimDriveDistanceX(double targetPosX){
+    double delta = targetPosX - getCameraPoseX();
+    return 0.0;
+}
+
+public double getAutoAimDriveDistanceZ(double targetPosZ){
+    double delta = targetPosZ - getCameraPoseZ();
+    return 0.0;
 }
 
 public double getTagHeight(){ //returns height of the viewed april tag in inches based off of their expected game field height
