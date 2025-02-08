@@ -53,8 +53,8 @@ public final class Constants {
     }
 
     public final class TestConstants {
-         public final static int kFrontPort = 23;
-        public final static int kBackPort = 21;
+        public final static int kMotorOnePort = 51;
+        public final static int kMotorTwoPort = 52;
     }
 
     public final class BlinkinConstants {

@@ -22,6 +22,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FlipperSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.TestMotorSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -51,6 +52,7 @@ public class RobotContainer {
   private LimelightSubsystem limelightSubsystem;
   private BlinkinSubsystem blinkinSubsystem;
 
+  private TestMotorSubsystem testMotorSubsystem;
 
   private SpinUpBlinkinCommand spinUpBlinkinCommand;
   private ShootBlinkinCommand shootBlinkinCommand;
@@ -82,13 +84,16 @@ public class RobotContainer {
     this.limelightSubsystem = new LimelightSubsystem();
     this.rightJoystick = new Joystick(ControllerConstants.kRightJoystickPort);
     this.leftJoystick = new Joystick(ControllerConstants.kLeftJoystickPort);
-    
+
+
     this.teleopDriveCmd = new DriveCommand(this.drivetrainSubsystem, this::getRightY, this::getLeftY, this::getThrottle);
     this.shootCommand = new SpinUpCommand(this.shooterSubsystem, this::getRightZ);
     this.flipperCommand = new FlipperCommand(this.flipperSubsystem, ShooterConstants.kFlipperPower);
     this.flipperBackCommand = new FlipperCommand(this.flipperSubsystem, ShooterConstants.kFlipperBackPower);
     this.spinUpBlinkinCommand = new SpinUpBlinkinCommand(this.blinkinSubsystem);
     this.shootBlinkinCommand = new ShootBlinkinCommand(this.blinkinSubsystem);
+
+    this.testMotorSubsystem = new TestMotorSubsystem();
 
     this.drivetrainSubsystem.setDefaultCommand(this.teleopDriveCmd);
 
