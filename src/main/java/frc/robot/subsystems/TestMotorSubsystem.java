@@ -1,0 +1,42 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+package frc.robot.subsystems;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+public class TestMotorControllerSubsystem extends SubsystemBase {
+    
+  private WPI_TalonSRX m_front = new WPI_TalonSRX(ShooterConstants.kFrontPort);
+  private WPI_TalonSRX m_back = new WPI_TalonSRX(ShooterConstants.kBackPort);
+
+  /** Creates a new ShooterSubsystem. */
+  public TestMotorControllerSubsystem() {
+
+    m_front.setNeutralMode(NeutralMode.Coast);
+    m_back.setNeutralMode(NeutralMode.Coast);
+
+    m_front.setInverted(false);
+    m_back.setInverted(false);
+
+    m_back.follow(m_front);
+
+  }
+
+  public void setFlywheelSpeed(double speed) {
+    m_front.set(speed);
+  }
+
+  public void stopFlywheel() {
+    m_front.stopMotor();
+  }
+
+  public double getFrontCurrent() {
+    return m_front.getStatorCurrent();
+  }
+
+  public double getBackCurrent() {
+    return m_back.getStatorCurrent();
+  }
+}
