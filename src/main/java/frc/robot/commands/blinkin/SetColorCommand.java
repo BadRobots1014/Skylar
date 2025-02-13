@@ -11,14 +11,16 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class SetColorCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final BlinkinSubsystem m_subsystem;
-
+  private final double m_color;
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
+   * @param color
    */
-  public SetColorCommand(BlinkinSubsystem subsystem) {
+  public SetColorCommand(BlinkinSubsystem subsystem, double color) {
     m_subsystem = subsystem;
+    m_color = color;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -30,7 +32,7 @@ public class SetColorCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.setBlinkin(.69);
+    m_subsystem.setBlinkin(m_color);
   }
 
   // Called once the command ends or is interrupted.
