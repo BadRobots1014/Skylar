@@ -17,7 +17,7 @@ public class SetColorCommand extends Command {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ShootBlinkinCommand(BlinkinSubsystem subsystem) {
+  public SetColorCommand(BlinkinSubsystem subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);

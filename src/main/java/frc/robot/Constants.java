@@ -30,6 +30,13 @@ public final class Constants {
         public final static int kShootBackButton = 3; //Lefty
 
         public final static int kYellowButton = 1;
+        public final static int kYellow2Button = 2;
+        public final static int kRedButton = 3;
+        public final static int kRed2Button = 4;
+        public final static int kBlueButton = 5;
+        public final static int kYBlue2Button = 6;
+        public final static int kGreenButton = 7;
+        public final static int kGreen2Button = 8;
         
     }
 

@@ -15,6 +15,7 @@ import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.FlipperCommand;
 import frc.robot.commands.SpinUpCommand;
+import frc.robot.commands.blinkin.SetColorCommand;
 import frc.robot.commands.blinkin.ShootBlinkinCommand;
 import frc.robot.commands.blinkin.SpinUpBlinkinCommand;
 import frc.robot.subsystems.BlinkinSubsystem;
@@ -49,6 +50,7 @@ public class RobotContainer {
   private FlipperCommand flipperCommand;
   private FlipperCommand flipperBackCommand;
   private FlipperSubsystem flipperSubsystem;
+  private SetColorCommand setColorCommand;
 
   private LimelightSubsystem limelightSubsystem;
   private BlinkinSubsystem blinkinSubsystem;
@@ -86,7 +88,7 @@ public class RobotContainer {
     this.rightJoystick = new Joystick(ControllerConstants.kRightJoystickPort);
     this.leftJoystick = new Joystick(ControllerConstants.kLeftJoystickPort);
     this.lightJoystick = new Joystick(ControllerConstants.kLightJoystick);
-
+    
 
     this.teleopDriveCmd = new DriveCommand(this.drivetrainSubsystem, this::getRightY, this::getLeftY, this::getThrottle);
     this.shootCommand = new SpinUpCommand(this.shooterSubsystem, this::getRightZ);
@@ -94,6 +96,7 @@ public class RobotContainer {
     this.flipperBackCommand = new FlipperCommand(this.flipperSubsystem, ShooterConstants.kFlipperBackPower);
     this.spinUpBlinkinCommand = new SpinUpBlinkinCommand(this.blinkinSubsystem);
     this.shootBlinkinCommand = new ShootBlinkinCommand(this.blinkinSubsystem);
+    this.setColorCommand = new SetColorCommand(this.blinkinSubsystem);
 
     this.testMotorSubsystem = new TestMotorSubsystem();
 
@@ -123,9 +126,29 @@ public class RobotContainer {
     JoystickButton pullBackButton = new JoystickButton(this.leftJoystick, ControllerConstants.kShootBackButton);
     pullBackButton.whileTrue(this.flipperBackCommand);
 
-    JoystickButton lightJoystick = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
-    lightJoystick.whileTrue(this.setColorCommand);
+    JoystickButton yellow1Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
+    yellow1Button.whileTrue(this.setColorCommand);
 
+    JoystickButton yellow2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
+    yellow2Button.whileTrue(this.setColorCommand);
+
+    JoystickButton red1Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
+    red1Button.whileTrue(this.setColorCommand);
+
+    JoystickButton red2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
+    red2Button.whileTrue(this.setColorCommand);
+
+    JoystickButton blue1Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
+    blue1Button.whileTrue(this.setColorCommand);
+
+    JoystickButton blue2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
+    blue2Button.whileTrue(this.setColorCommand);
+
+    JoystickButton green1Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
+    green1Button.whileTrue(this.setColorCommand);
+
+    JoystickButton green2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
+    green2Button.whileTrue(this.setColorCommand);
   }
 
   /**
