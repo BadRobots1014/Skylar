@@ -37,6 +37,14 @@ public final class Constants {
         public final static int kYBlue2Button = 6;
         public final static int kGreenButton = 7;
         public final static int kGreen2Button = 8;
+
+        public final static double yellow = 0.69;
+        public final static double red = 0.61;
+        public final static double redpatt = -0.25;
+        public final static double blue = 0.87;
+        public final static double bluepatt = -0.15;
+        public final static double green = 0.75;
+
         
     }
 
