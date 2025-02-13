@@ -41,6 +41,7 @@ public class RobotContainer {
   
   private Joystick rightJoystick;
   private Joystick leftJoystick;
+  private Joystick lightJoystick;
 
   private ShooterSubsystem shooterSubsystem;
   private SpinUpCommand shootCommand;
@@ -84,6 +85,7 @@ public class RobotContainer {
     this.limelightSubsystem = new LimelightSubsystem();
     this.rightJoystick = new Joystick(ControllerConstants.kRightJoystickPort);
     this.leftJoystick = new Joystick(ControllerConstants.kLeftJoystickPort);
+    this.lightJoystick = new Joystick(ControllerConstants.kLightJoystick);
 
 
     this.teleopDriveCmd = new DriveCommand(this.drivetrainSubsystem, this::getRightY, this::getLeftY, this::getThrottle);
@@ -120,6 +122,9 @@ public class RobotContainer {
 
     JoystickButton pullBackButton = new JoystickButton(this.leftJoystick, ControllerConstants.kShootBackButton);
     pullBackButton.whileTrue(this.flipperBackCommand);
+
+    JoystickButton lightJoystick = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
+    lightJoystick.whileTrue(this.setColorCommand);
 
   }
 

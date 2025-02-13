@@ -18,6 +18,7 @@ public final class Constants {
 
         public final static int kRightJoystickPort = 0;
         public final static int kLeftJoystickPort = 1;
+        public final static int kLightJoystick = 2;
 
         public final static double kMaxThrottle = 1.0;
         public final static double kSlowThrottle = 0.5;
@@ -27,6 +28,8 @@ public final class Constants {
         public final static int kSpinUpButton = 1;
         public final static int kShootButton = 1; //Note that this is on the left joystick.
         public final static int kShootBackButton = 3; //Lefty
+
+        public final static int kYellowButton = 1;
         
     }
 
