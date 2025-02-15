@@ -11,9 +11,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class SetColorCommand extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final BlinkinSubsystem m_subsystem;
-  private final double m_color;
+  private double m_color;
   /**
    * Creates a new ExampleCommand.
+   * 
    *
    * @param subsystem The subsystem used by this command.
    * @param color

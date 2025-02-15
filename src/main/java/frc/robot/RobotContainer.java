@@ -63,7 +63,10 @@ public class RobotContainer {
   private SetColorCommand setYellow;
   private SetColorCommand setBlue;
   private SetColorCommand setGreen;
-
+  private SetColorCommand set2Red;
+  private SetColorCommand set2Yellow;
+  private SetColorCommand set2Blue;
+  private SetColorCommand set2Green;
 
   public double getRightY() {
     return -rightJoystick.getY();
@@ -105,7 +108,10 @@ public class RobotContainer {
     this.setYellow = new SetColorCommand(this.blinkinSubsystem, Constants.ControllerConstants.yellow);
     this.setBlue = new SetColorCommand(this.blinkinSubsystem, Constants.ControllerConstants.blue);
     this.setGreen = new SetColorCommand(this.blinkinSubsystem, Constants.ControllerConstants.green);
-
+    this.set2Red = new SetColorCommand(this.blinkinSubsystem, Constants.ControllerConstants.redPatt);
+    this.set2Yellow = new SetColorCommand(this.blinkinSubsystem, Constants.ControllerConstants.yellowPatt);
+    this.set2Blue = new SetColorCommand(this.blinkinSubsystem, Constants.ControllerConstants.bluePatt);
+    this.set2Green = new SetColorCommand(this.blinkinSubsystem, Constants.ControllerConstants.greenPatt);
     this.testMotorSubsystem = new TestMotorSubsystem();
 
     this.drivetrainSubsystem.setDefaultCommand(this.teleopDriveCmd);
@@ -134,29 +140,30 @@ public class RobotContainer {
     JoystickButton pullBackButton = new JoystickButton(this.leftJoystick, ControllerConstants.kShootBackButton);
     pullBackButton.whileTrue(this.flipperBackCommand);
 
-    JoystickButton yellow1Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
-    yellow1Button.whileTrue(this.setYellow);
+    JoystickButton yellowButton = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
+    yellowButton.whileTrue(this.setYellow);
 
-    JoystickButton yellow2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
-    yellow2Button.whileTrue(this.setYellow);
+    JoystickButton yellow2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellow2Button);
+    yellow2Button.whileTrue(this.set2Yellow);
 
-    JoystickButton red1Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
-    red1Button.whileTrue(this.setRed);
+    JoystickButton redButton = new JoystickButton(this.lightJoystick, ControllerConstants.kRedButton);
+    redButton.whileTrue(this.setRed);
 
-    JoystickButton red2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
-    red2Button.whileTrue(this.setRed);
+    JoystickButton red2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kRed2Button);
+    red2Button.whileTrue(this.set2Red);
 
-    JoystickButton blue1Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
-    blue1Button.whileTrue(this.setBlue);
+    JoystickButton blueButton = new JoystickButton(this.lightJoystick, ControllerConstants.kBlueButton);
+    blueButton.whileTrue(this.setBlue);
 
-    JoystickButton blue2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
-    blue2Button.whileTrue(this.setBlue);
+    JoystickButton blue2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kBlue2Button);
+    blue2Button.whileTrue(this.set2Blue);
 
-    JoystickButton green1Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
-    green1Button.whileTrue(this.setGreen);
+    JoystickButton greenButton = new JoystickButton(this.lightJoystick, ControllerConstants.kGreenButton);
+    greenButton.whileTrue(this.setGreen);
 
-    JoystickButton green2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kYellowButton);
-    green2Button.whileTrue(this.setGreen);
+    JoystickButton green2Button = new JoystickButton(this.lightJoystick, ControllerConstants.kGreen2Button);
+    green2Button.whileTrue(this.set2Green);
+
   }
 
   /**

@@ -34,16 +34,18 @@ public final class Constants {
         public final static int kRedButton = 3;
         public final static int kRed2Button = 4;
         public final static int kBlueButton = 5;
-        public final static int kYBlue2Button = 6;
+        public final static int kBlue2Button = 6;
         public final static int kGreenButton = 7;
         public final static int kGreen2Button = 8;
 
         public final static double yellow = 0.69;
+        public final static double yellowPatt = -0.07;
         public final static double red = 0.61;
-        public final static double redpatt = -0.25;
+        public final static double redPatt = -0.17;
         public final static double blue = 0.87;
-        public final static double bluepatt = -0.15;
-        public final static double green = 0.75;
+        public final static double bluePatt = -0.83;
+        public final static double green = 0.77;
+        public final static double greenPatt = -0.37;
 
         
     }
